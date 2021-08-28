@@ -15,16 +15,9 @@ public class TicTacToeRunner {
         System.out.println("Computer symbol is:- " + computerSymbol);
 
         ticTacToeGame.displayBoard(board);
+        ticTacToeGame.enterYourChoice(board,userSymbol);
 
+        ticTacToeGame.displayBoard(board);
 
-        int index=0;
-        while(index==0) {
-            index = ticTacToeGame.makeUserChoice(board, userSymbol);
-            if (index==1)
-                System.out.println("Index is free, and your choice is registered");
-
-            else
-                System.out.println("Index is not free, and please enter another index");
-        }
     }
 }

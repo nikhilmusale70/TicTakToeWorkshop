@@ -1,5 +1,6 @@
 package com.bridgelabz.tictaktoe;
 
+import java.time.chrono.MinguoDate;
 import java.util.Scanner;
 
 public class TicTacToeGame {
@@ -29,6 +30,19 @@ public class TicTacToeGame {
         }
     }
 
+    public void enterYourChoice(char[] board, char userSymbol) {
+        int index = 0;
+        while (true) {
+            index = makeUserChoice(board, userSymbol);
+            if (index != 0){
+                System.out.println("Index is free, and your choice is registered");
+                break;
+            }
+            else
+                System.out.println("Index is not free, and please enter another index");
+        }
+    }
+
     public boolean checkIfEmpty(char[] board, int index){
         if (board[index] == '_')
             return true;
@@ -38,17 +52,22 @@ public class TicTacToeGame {
 
     public int makeUserChoice(char[] board, char userSymbol){
         Scanner sc = new Scanner(System.in);
+
         System.out.println();
 
         System.out.print("Enter your choice from 1-9 :-");
         int index = sc.nextInt();
 
         if(checkIfEmpty(board,index)){
+            assigningChoiceToBoard(board, index, userSymbol);
             return index;
         }
         else {
             return 0;
-
         }
+    }
+
+    public void assigningChoiceToBoard(char[] board, int index, char userSymbol){
+        board[index] = userSymbol;
     }
 }
