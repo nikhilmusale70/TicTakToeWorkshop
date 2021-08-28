@@ -3,12 +3,12 @@ package com.bridgelabz.tictaktoe;
 import java.util.Scanner;
 
 public class TicTacToeGame {
-    public char[] board;
 
-    public void createBoard(){
-        board = new char[10];
+    public char[] createBoard(){
+        char[] board = new char[10];
         for (int i=1;i<board.length;i++)
             board[i] = ' ';
+        return board;
     }
 
     public char chooseSymbol(){

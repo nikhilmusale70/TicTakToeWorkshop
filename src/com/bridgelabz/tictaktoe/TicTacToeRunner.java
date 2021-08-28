@@ -6,7 +6,7 @@ public class TicTacToeRunner {
 
     public static void main(String[] args) {
         TicTacToeGame ticTacToeGame = new TicTacToeGame();
-        ticTacToeGame.createBoard();
+        char[] board = ticTacToeGame.createBoard();
 
         char userSymbol = ticTacToeGame.chooseSymbol();
         char computerSymbol;
