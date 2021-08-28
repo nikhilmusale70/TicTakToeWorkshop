@@ -9,13 +9,11 @@ public class TicTacToeRunner {
         char[] board = ticTacToeGame.createBoard();
 
         char userSymbol = ticTacToeGame.chooseSymbol();
-        char computerSymbol;
-        if (userSymbol=='x')
-            computerSymbol = 'o';
-        else
-            computerSymbol = 'x';
+        char computerSymbol = (userSymbol=='x')?'o':'x';
 
         System.out.println("User symbol is:- " + userSymbol);
         System.out.println("Computer symbol is:- " + computerSymbol);
+
+        ticTacToeGame.displayBoard(board);
     }
 }
