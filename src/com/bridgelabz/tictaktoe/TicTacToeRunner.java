@@ -15,5 +15,8 @@ public class TicTacToeRunner {
         System.out.println("Computer symbol is:- " + computerSymbol);
 
         ticTacToeGame.displayBoard(board);
+
+        board = ticTacToeGame.makeUserChoice(board,userSymbol);
+        ticTacToeGame.displayBoard(board);
     }
 }

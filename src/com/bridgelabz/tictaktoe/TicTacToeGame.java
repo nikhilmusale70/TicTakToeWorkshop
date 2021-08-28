@@ -28,4 +28,24 @@ public class TicTacToeGame {
             }
         }
     }
+
+    public boolean checkIfEmpty(char[] board, int index){
+        if (board[index] == '_')
+            return true;
+        else
+            return false;
+    }
+
+    public char[] makeUserChoice(char[] board, char userSymbol){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter your choice from 1-9 :-");
+        int index = sc.nextInt();
+
+        if(checkIfEmpty(board,index)){
+            board[index]=userSymbol;
+            System.out.println("empty");
+        }
+
+        return board;
+    }
 }
