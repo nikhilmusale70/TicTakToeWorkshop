@@ -1,6 +1,8 @@
 package com.bridgelabz.tictaktoe;
 
 import java.time.chrono.MinguoDate;
+import java.util.Locale;
+import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToeGame {
@@ -69,5 +71,23 @@ public class TicTacToeGame {
 
     public void assigningChoiceToBoard(char[] board, int index, char userSymbol){
         board[index] = userSymbol;
+    }
+
+    public int coinToss() {
+        Random ran = new Random();
+        System.out.print("Enter your choice (Heads or Tails):- ");
+        Scanner sc = new Scanner(System.in);
+        String choice = sc.nextLine().toLowerCase();
+
+        int a = ran.nextInt(2);
+        String toss = (a == 1) ? "heads" : "tails";
+        if (choice.equals(toss)){
+            System.out.println("You won the toss, you will play first");
+            return 1;
+        }
+        else {
+            System.out.println("Computer won the toss, computer will play first");
+            return 0;
+        }
     }
 }

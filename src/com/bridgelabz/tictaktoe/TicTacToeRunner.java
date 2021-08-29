@@ -14,9 +14,10 @@ public class TicTacToeRunner {
         System.out.println("User symbol is:- " + userSymbol);
         System.out.println("Computer symbol is:- " + computerSymbol);
 
-        ticTacToeGame.displayBoard(board);
-        ticTacToeGame.enterYourChoice(board,userSymbol);
 
+        int choice = ticTacToeGame.coinToss();
+
+        ticTacToeGame.enterYourChoice(board,userSymbol);
         ticTacToeGame.displayBoard(board);
 
     }
