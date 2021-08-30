@@ -17,6 +17,24 @@ public class TicTacToeGame {
         return board;
     }
 
+    public int coinToss() {
+        Random ran = new Random();
+        System.out.print("Enter your choice (Heads or Tails):- ");
+        Scanner sc = new Scanner(System.in);
+        String choice = sc.nextLine().toLowerCase();
+
+        int a = ran.nextInt(2);
+        String toss = (a == 1) ? "heads" : "tails";
+        if (choice.equals(toss)){
+            System.out.println("You won the toss, you will play first");
+            return 1;
+        }
+        else {
+            System.out.println("Computer won the toss, computer will play first");
+            return 0;
+        }
+    }
+
     public char chooseSymbol() {
         System.out.print("Which symbol you want \n\t'x' or 'o'\nEnter here :- ");
         Scanner sc = new Scanner(System.in);
@@ -76,28 +94,15 @@ public class TicTacToeGame {
         board[index] = userSymbol;
     }
 
-    public int coinToss() {
-        Random ran = new Random();
-        System.out.print("Enter your choice (Heads or Tails):- ");
-        Scanner sc = new Scanner(System.in);
-        String choice = sc.nextLine().toLowerCase();
 
-        int a = ran.nextInt(2);
-        String toss = (a == 1) ? "heads" : "tails";
-        if (choice.equals(toss)){
-            System.out.println("You won the toss, you will play first");
-            return 1;
-        }
-        else {
-            System.out.println("Computer won the toss, computer will play first");
-            return 0;
-        }
-    }
 
     public void resultOfMove(char[] board, char userSymbol){
         checkGameWonOrNot(board,userSymbol);
         if (flag==1){
-            System.out.println(userSymbol + " Won the game");
+            if (userSymbol=='x')
+                System.out.println("You Won the game");
+            else
+                System.out.println("Computer won the game");
         }
         else
             switchChance();
@@ -105,6 +110,9 @@ public class TicTacToeGame {
 
     public void switchChance(){
         System.out.println("Chance are switched");
+        computerPlaysNow(){
+
+        }
     }
 
     public boolean isBoardFull(char[] board){                            //for tie
