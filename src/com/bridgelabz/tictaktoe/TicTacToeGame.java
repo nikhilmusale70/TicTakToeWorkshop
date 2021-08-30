@@ -7,6 +7,9 @@ import java.util.Scanner;
 
 public class TicTacToeGame {
 
+    public static int flag;
+    public static int count;
+
     public char[] createBoard() {
         char[] board = new char[10];
         for (int i = 1; i < board.length; i++)
@@ -89,5 +92,47 @@ public class TicTacToeGame {
             System.out.println("Computer won the toss, computer will play first");
             return 0;
         }
+    }
+
+    public void resultOfMove(char[] board, char userSymbol){
+        checkGameWonOrNot(board,userSymbol);
+        if (flag==1){
+            System.out.println(userSymbol + " Won the game");
+        }
+        else
+            switchChance();
+    }
+
+    public void switchChance(){
+        System.out.println("Chance are switched");
+    }
+
+    public boolean isBoardFull(char[] board){                            //for tie
+        count =0;
+        for (int i=1;i<10;i++)
+            if ((board[i]=='x') || board[i]=='o')
+                count++;
+
+        if (count==9)
+            return true;
+        else
+            return false;
+    }
+
+    public void checkGameWonOrNot(char[] board,char userSymbol){        //won condition
+        flag=0;
+        if((board[1]==board[2])&&(board[2]==board[3])&&(board[3]==userSymbol)  ||     //toprow
+           (board[4]==board[5])&&(board[5]==board[6])&&(board[6]==userSymbol)  ||     //midrow
+           (board[7]==board[8])&&(board[8]==board[9])&&(board[9]==userSymbol)  ||     //bottomrow
+           (board[1]==board[4])&&(board[4]==board[7])&&(board[7]==userSymbol)  ||     //firstColumn
+           (board[2]==board[5])&&(board[5]==board[8])&&(board[8]==userSymbol)  ||     //middleColumn
+           (board[3]==board[6])&&(board[6]==board[9])&&(board[9]==userSymbol)  ||     //lastColumn
+           (board[1]==board[5])&&(board[5]==board[9])&&(board[9]==userSymbol)  ||     //firstDiagonal
+           (board[3]==board[5])&&(board[5]==board[7])&&(board[7]==userSymbol)         //secondDiagonal
+        ){
+            System.out.print("Game won by ");
+            flag=1;
+        }
+
     }
 }

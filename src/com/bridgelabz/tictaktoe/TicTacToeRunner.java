@@ -20,5 +20,11 @@ public class TicTacToeRunner {
         ticTacToeGame.enterYourChoice(board,userSymbol);
         ticTacToeGame.displayBoard(board);
 
+        ticTacToeGame.resultOfMove(board,userSymbol);
+
+        ticTacToeGame.displayBoard(board);
+
+
+
     }
 }
