@@ -114,6 +114,10 @@ public class TicTacToeGame {
             index = checkCorner(board);
         }
         if (index == 0){
+            if (checkIfEmpty(board,5))
+                index =5;
+        }
+        if (index == 0){
             while (true){
                 index = ran.nextInt(9) + 1;
                 if(checkIfEmpty(board,index)) {
