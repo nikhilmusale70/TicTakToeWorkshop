@@ -90,19 +90,34 @@ public class TicTacToeGame {
         }
     }
 
+    public int checkCorner(char[] board){
+        if(checkIfEmpty(board,1))
+            return 1;
+        else if(checkIfEmpty(board,3))
+            return 3;
+        else if(checkIfEmpty(board,7))
+            return 7;
+        else if(checkIfEmpty(board,9))
+            return 9;
+        else
+            return 0;
+    }
+
     public void computerPlay(char[] board, char computerSymbol, char userSymbol){
         Random ran = new Random();
         int index = 0;
         index = ifICanWin(board,computerSymbol);
-        if (index==0){
+        if (index == 0){
             index = ifUserCanWin(board,userSymbol);
+        }
+        if(index == 0){
+            index = checkCorner(board);
         }
         if (index == 0){
             while (true){
-                index = ran.nextInt(10) + 1;
+                index = ran.nextInt(9) + 1;
                 if(checkIfEmpty(board,index)) {
                     assigningChoiceToBoard(board, index, computerSymbol);
-               //     return index;
                     break;
                 }
             }
