@@ -90,10 +90,13 @@ public class TicTacToeGame {
         }
     }
 
-    public void computerPlay(char[] board, char computerSymbol){
+    public void computerPlay(char[] board, char computerSymbol, char userSymbol){
         Random ran = new Random();
         int index = 0;
         index = ifICanWin(board,computerSymbol);
+        if (index==0){
+            index = ifUserCanWin(board,userSymbol);
+        }
         if (index == 0){
             while (true){
                 index = ran.nextInt(10) + 1;
@@ -104,9 +107,12 @@ public class TicTacToeGame {
                 }
             }
         }
-        else {
+        if(index!=0) {
             assigningChoiceToBoard(board, index, computerSymbol);
         }
+    }
+    public int ifUserCanWin(char[] board, char userSymbol){
+        return ifICanWin(board,userSymbol);
     }
     public int ifICanWin(char[] board, char computerSymbol){
         if (((board[1]==board[2])&&(board[2]==computerSymbol)) && checkIfEmpty(board,3) ){  //topRow
@@ -200,22 +206,9 @@ public class TicTacToeGame {
 
 
 
-    public void resultOfMove(char[] board, char userSymbol,char compySymbol){
-        checkGameWonOrNot(board,userSymbol);
-        if (flag==1){
-            if (userSymbol=='x')
-                System.out.println("You Won the game");
-            else
-                System.out.println("Computer won the game");
-        }
-        else
-            switchChance(board,compySymbol);
-    }
+    public void resultOfMove(char[] board, char userSymbol,char compSymbol){
+        checkGameWonOrNot(board,userSymbol,compSymbol);
 
-    public void switchChance(char[] board, char compSymbol){
-        System.out.println("Chance are switched");
-        //computerPlay(board, compSymbol);
-        //int a=0;
 
     }
 
@@ -226,12 +219,12 @@ public class TicTacToeGame {
                 count++;
 
         if (count==9)
-            return true;
-        else
             return false;
+        else
+            return true;
     }
 
-    public void checkGameWonOrNot(char[] board,char userSymbol){        //won condition
+    public void checkGameWonOrNot(char[] board,char userSymbol,char compSymbol){        //won condition
         flag=0;
         if((board[1]==board[2])&&(board[2]==board[3])&&(board[3]==userSymbol)  ||     //toprow
            (board[4]==board[5])&&(board[5]==board[6])&&(board[6]==userSymbol)  ||     //midrow
@@ -242,8 +235,20 @@ public class TicTacToeGame {
            (board[1]==board[5])&&(board[5]==board[9])&&(board[9]==userSymbol)  ||     //firstDiagonal
            (board[3]==board[5])&&(board[5]==board[7])&&(board[7]==userSymbol)         //secondDiagonal
         ){
-            System.out.print("Game won by ");
+            System.out.print("Game won by user");
             flag=1;
+        }
+        if(     (board[1]==board[2])&&(board[2]==board[3])&&(board[3]==compSymbol)  ||     //toprow
+                (board[4]==board[5])&&(board[5]==board[6])&&(board[6]==compSymbol)  ||     //midrow
+                (board[7]==board[8])&&(board[8]==board[9])&&(board[9]==compSymbol)  ||     //bottomrow
+                (board[1]==board[4])&&(board[4]==board[7])&&(board[7]==compSymbol)  ||     //firstColumn
+                (board[2]==board[5])&&(board[5]==board[8])&&(board[8]==compSymbol)  ||     //middleColumn
+                (board[3]==board[6])&&(board[6]==board[9])&&(board[9]==compSymbol)  ||     //lastColumn
+                (board[1]==board[5])&&(board[5]==board[9])&&(board[9]==compSymbol)  ||     //firstDiagonal
+                (board[3]==board[5])&&(board[5]==board[7])&&(board[7]==compSymbol)         //secondDiagonal
+        ){
+            System.out.print("Game won by Computer");
+            flag=2;
         }
 
     }

@@ -13,9 +13,33 @@ public class TicTacToeRunner {
         System.out.println("Computer symbol is:- " + computerSymbol);
 
 
+
         int choice = ticTacToeGame.coinToss();
+
         HumanChance human = new HumanChance();
-        human.humanPlay(board,userSymbol);
+        ComputerChance computerChance = new ComputerChance();
+
+        while (ticTacToeGame.isBoardFull(board)){
+            if (choice==1){
+                choice=0;
+                human.humanPlay(board,userSymbol);
+                ticTacToeGame.resultOfMove(board,userSymbol,computerSymbol);
+                if (TicTacToeGame.flag == 1)
+                    break;
+            }
+            else{
+                choice=1;
+                computerChance.computerChance(board,computerSymbol,userSymbol);
+                ticTacToeGame.resultOfMove(board,userSymbol,computerSymbol);
+                if (TicTacToeGame.flag == 2)
+                    break;
+                }
+        }
+
+        if (ticTacToeGame.isBoardFull(board) == false){
+            System.out.println("Game tied");
+        }
+
 
 //        ticTacToeGame.humanPlay(board,userSymbol);
 //
