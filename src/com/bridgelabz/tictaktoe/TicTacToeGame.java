@@ -90,13 +90,117 @@ public class TicTacToeGame {
         }
     }
 
+    public void computerPlay(char[] board, char computerSymbol){
+        Random ran = new Random();
+        int index = 0;
+        index = ifICanWin(board,computerSymbol);
+        if (index == 0){
+            while (true){
+                index = ran.nextInt(10) + 1;
+                if(checkIfEmpty(board,index)) {
+                    assigningChoiceToBoard(board, index, computerSymbol);
+               //     return index;
+                    break;
+                }
+            }
+        }
+        else {
+            assigningChoiceToBoard(board, index, computerSymbol);
+        }
+    }
+    public int ifICanWin(char[] board, char computerSymbol){
+        if (((board[1]==board[2])&&(board[2]==computerSymbol)) && checkIfEmpty(board,3) ){  //topRow
+            return 3;
+        }
+        if (((board[1]==board[3])&&(board[3]==computerSymbol)) && checkIfEmpty(board,2) ){
+            return 2;
+        }
+        if (((board[2]==board[3])&&(board[3]==computerSymbol)) && checkIfEmpty(board,1) ){
+            return 1;
+        }
+
+        if (((board[4]==board[5])&&(board[5]==computerSymbol)) && checkIfEmpty(board,6) ){  //midRow
+            return 6;
+        }
+        if (((board[4]==board[6])&&(board[6]==computerSymbol)) && checkIfEmpty(board,5) ){
+            return 5;
+        }
+        if (((board[5]==board[6])&&(board[6]==computerSymbol)) && checkIfEmpty(board,4) ){
+            return 1;
+        }
+
+        if (((board[7]==board[8])&&(board[8]==computerSymbol)) && checkIfEmpty(board,9) ){  //bottomRow
+            return 3;
+        }
+        if (((board[7]==board[9])&&(board[9]==computerSymbol)) && checkIfEmpty(board,8) ){
+            return 2;
+        }
+        if (((board[8]==board[9])&&(board[9]==computerSymbol)) && checkIfEmpty(board,7) ){
+            return 1;
+        }
+
+        //columns
+        if (((board[1]==board[4])&&(board[4]==computerSymbol)) && checkIfEmpty(board,7) ){  //1stColumn
+            return 7;
+        }
+        if (((board[1]==board[7])&&(board[7]==computerSymbol)) && checkIfEmpty(board,4) ){
+            return 4;
+        }
+        if (((board[7]==board[4])&&(board[4]==computerSymbol)) && checkIfEmpty(board,1) ){
+            return 1;
+        }
+
+        if (((board[2]==board[5])&&(board[5]==computerSymbol)) && checkIfEmpty(board,8) ){  //2nd column
+            return 8;
+        }
+        if (((board[2]==board[8])&&(board[8]==computerSymbol)) && checkIfEmpty(board,5) ){
+            return 5;
+        }
+        if (((board[5]==board[8])&&(board[8]==computerSymbol)) && checkIfEmpty(board,2) ){
+            return 2;
+        }
+
+        if (((board[3]==board[6])&&(board[6]==computerSymbol)) && checkIfEmpty(board,9) ){  //3rd column
+            return 9;
+        }
+        if (((board[3]==board[9])&&(board[9]==computerSymbol)) && checkIfEmpty(board,6) ){
+            return 6;
+        }
+        if (((board[6]==board[9])&&(board[9]==computerSymbol)) && checkIfEmpty(board,3) ){
+            return 3;
+        }
+
+        //diagonals
+        if (((board[1]==board[5])&&(board[5]==computerSymbol)) && checkIfEmpty(board,9) ){  //1st diagonal
+            return 9;
+        }
+        if (((board[1]==board[9])&&(board[9]==computerSymbol)) && checkIfEmpty(board,5) ){
+            return 5;
+        }
+        if (((board[5]==board[9])&&(board[9]==computerSymbol)) && checkIfEmpty(board,1) ){
+            return 1;
+        }
+
+        if (((board[3]==board[5])&&(board[5]==computerSymbol)) && checkIfEmpty(board,7) ){  //2nd diagonal
+            return 7;
+        }
+        if (((board[3]==board[7])&&(board[7]==computerSymbol)) && checkIfEmpty(board,5) ){
+            return 5;
+        }
+        if (((board[5]==board[7])&&(board[7]==computerSymbol)) && checkIfEmpty(board,3) ){
+            return 3;
+        }
+
+        return 0;
+    }
+
     public void assigningChoiceToBoard(char[] board, int index, char userSymbol){
         board[index] = userSymbol;
     }
 
 
 
-    public void resultOfMove(char[] board, char userSymbol){
+    public void resultOfMove(char[] board, char userSymbol,char compySymbol){
         checkGameWonOrNot(board,userSymbol);
         if (flag==1){
             if (userSymbol=='x')
@@ -105,14 +209,14 @@ public class TicTacToeGame {
                 System.out.println("Computer won the game");
         }
         else
-            switchChance();
+            switchChance(board,compySymbol);
     }
 
-    public void switchChance(){
+    public void switchChance(char[] board, char compSymbol){
         System.out.println("Chance are switched");
-        computerPlaysNow(){
+        //computerPlay(board, compSymbol);
+        //int a=0;
 
-        }
     }
 
     public boolean isBoardFull(char[] board){                            //for tie

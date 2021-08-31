@@ -1,7 +1,5 @@
 package com.bridgelabz.tictaktoe;
 
-import com.sun.deploy.security.SelectableSecurityManager;
-
 public class TicTacToeRunner {
 
     public static void main(String[] args) {
@@ -16,13 +14,17 @@ public class TicTacToeRunner {
 
 
         int choice = ticTacToeGame.coinToss();
+        HumanChance human = new HumanChance();
+        human.humanPlay(board,userSymbol);
 
-        ticTacToeGame.enterYourChoice(board,userSymbol);
-        ticTacToeGame.displayBoard(board);
+//        ticTacToeGame.humanPlay(board,userSymbol);
+//
+//        ticTacToeGame.enterYourChoice(board,userSymbol);
+//        ticTacToeGame.displayBoard(board);
 
-        ticTacToeGame.resultOfMove(board,userSymbol);
+        //ticTacToeGame.resultOfMove(board,userSymbol, computerSymbol);
 
-        ticTacToeGame.displayBoard(board);
+        //ticTacToeGame.displayBoard(board);
 
 
 
